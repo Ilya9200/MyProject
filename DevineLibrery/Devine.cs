@@ -3,29 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReactCalc.Models;
 
-namespace ReactCalc.Models
+namespace DevineLibrery
 {
-    public class SumOperation : Operation
+    public class DevineOperation : Operation
     {
         public override long Code
         {
-            get { return 1; }
+            get { return 3000; }
         }
 
         public override string Name
         {
-            get { return "sum"; }
+            get { return "devine"; }
         }
 
         public override string rusName
         {
-            get { return "сумма"; }
+            get { return "частное"; }
         }
 
         public override double Execute(double[] args)
         {
-            return args.Sum();
+            return args[1] / args[2];
         }
     }
 }

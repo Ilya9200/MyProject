@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace ReactCalc.Models
 {
-    public class SumOperation : Operation
+    public class PowOperation : Operation
     {
         public override long Code
         {
-            get { return 1; }
+            get { return 2000; }
         }
 
         public override string Name
         {
-            get { return "sum"; }
+            get { return "pow"; }
         }
 
         public override string rusName
         {
-            get { return "сумма"; }
+            get { return "степень числа"; }
         }
 
         public override double Execute(double[] args)
         {
-            return args.Sum();
+            return Math.Pow(args[0], args[1]);
         }
     }
 }

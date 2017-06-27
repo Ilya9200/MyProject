@@ -52,8 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalcBase\CalcBase.csproj">
-      <Project>{e4375ef6-1fa5-4086-b221-a95dc26b0eac}</Project>
+      <Project>{529b93d1-0922-4f71-b85b-bc759939ea55}</Project>
       <Name>CalcBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FactorialLibrery\FactorialLibrery.csproj">
+      <Project>{4e2515fe-d741-4422-86e2-e9306a454dd9}</Project>
+      <Name>FactorialLibrery</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

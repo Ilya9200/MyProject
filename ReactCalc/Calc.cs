@@ -12,17 +12,26 @@ namespace ReactCalc
     /// </summary>
     public class Calc
     {
+        public IList<IOperation> Operations { get; private set; }
+        public string rusName { get; set; }
 
         public Calc()
         {
             Operations = new List<IOperation>();
             Operations.Add(new SumOperation());
+            Operations.Add(new PowOperation());
+            SetDllFile("\\FactorialLibrery.dll");
+            SetDllFile("\\DevineLibrery.dll");
+        }
 
-            var dllName = Directory.GetCurrentDirectory() + "\\FactorialLibrary.dll";
+        private bool SetDllFile(string dll)
+        {
+            var dllName = Directory.GetCurrentDirectory() + dll;
 
             if (!File.Exists(dllName))
             {
-                return;
+                Console.WriteLine("Файл " + dllName + " не подключен");
+                return false;
             }
 
             // загружаем сборку 
@@ -37,7 +46,7 @@ namespace ReactCalc
                 if (interfs.Contains(typeof(IOperation)))
                 {
                     // создаем экземпляр найденного класса
-                    var instance = Activator.CreateInstance(t) as IOperation;
+                    var instance = Activator.CreateInstance(t) as IOperation;//делаем из t IOperation
                     if (instance != null)
                     {
                         // добавляем его в наш список операций
@@ -45,14 +54,14 @@ namespace ReactCalc
                     }
                 }
             }
+            return true;
         }
-
-        public IList<IOperation> Operations { get; private set; }
 
         private double Execute(Func<IOperation, bool> selector, double[] args)
         {
             // находим операцию по имени
             IOperation oper = Operations.FirstOrDefault(selector);
+            rusName = oper.rusName;
 
             if (oper != null)
             {

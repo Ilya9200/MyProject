@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{529B93D1-0922-4F71-B85B-BC759939EA55}</ProjectGuid>
+    <ProjectGuid>{4E2515FE-D741-4422-86E2-E9306A454DD9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CalcBase</RootNamespace>
-    <AssemblyName>CalcBase</AssemblyName>
+    <RootNamespace>FactorialLibrery</RootNamespace>
+    <AssemblyName>FactorialLibrery</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,11 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\IOperation.cs" />
-    <Compile Include="Models\Operation.cs" />
-    <Compile Include="Models\PowOperation.cs" />
-    <Compile Include="Models\SumOperation.cs" />
+    <Compile Include="FactorialOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CalcBase\CalcBase.csproj">
+      <Project>{529b93d1-0922-4f71-b85b-bc759939ea55}</Project>
+      <Name>CalcBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

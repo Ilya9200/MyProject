@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using ReactCalc.Models;
 
 namespace ReactCalc
 {
@@ -47,8 +48,10 @@ namespace ReactCalc
             try
             {
                 var result = calc.Execute(oper, new[] { x, y });
+                
+                
 
-                Console.WriteLine(String.Format("{0} = {1}", oper, result));
+                Console.WriteLine(String.Format("{0} = {1}", calc.rusName, result));
             }
             catch (NotSupportedException ex)
             {

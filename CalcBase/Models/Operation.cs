@@ -12,6 +12,8 @@ namespace ReactCalc.Models
 
         public abstract string Name { get; }
 
+        public abstract string rusName { get; }
+
         public abstract double Execute(double[] args);
     }
 }
