@@ -20,8 +20,10 @@ namespace ReactCalc
             Operations = new List<IOperation>();
             Operations.Add(new SumOperation());
             Operations.Add(new PowOperation());
-            SetDllFile("\\FactorialLibrery.dll");
+            Operations.Add(new ResOperation());
+            Operations.Add(new MulOperation());
             SetDllFile("\\DevineLibrery.dll");
+            SetDllFile("\\FactorialLibrery.dll");
         }
 
         private bool SetDllFile(string dll)

@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\IOperation.cs" />
+    <Compile Include="Models\MulOperation.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\PowOperation.cs" />
+    <Compile Include="Models\ResOperation.cs" />
     <Compile Include="Models\SumOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
