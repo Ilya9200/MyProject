@@ -23,6 +23,11 @@ namespace ReactCalc.Models
             get { return "степень числа"; }
         }
 
+        public override bool hard
+        {
+            get { return true; }
+        }
+
         public override double Execute(double[] args)
         {
             return Math.Pow(args[0], args[1]);

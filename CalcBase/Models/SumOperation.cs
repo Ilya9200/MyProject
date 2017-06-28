@@ -23,6 +23,17 @@ namespace ReactCalc.Models
             get { return "сумма"; }
         }
 
+        public override string DisplayName
+        {
+            get { return "сумма1"; }
+        }
+
+        public override string Discription 
+        {
+            get { return "складывает два числа"; }
+        }
+
+
         public override double Execute(double[] args)
         {
             return args.Sum();

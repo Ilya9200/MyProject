@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReactCalc.Models
 {
-    public abstract class Operation : IOperation
+    public abstract class Operation : IDisplayOperation
     {
         public abstract long Code { get; }
 
@@ -15,5 +15,13 @@ namespace ReactCalc.Models
         public abstract string rusName { get; }
 
         public abstract double Execute(double[] args);
+
+        public virtual string DisplayName { get { return ""; } }
+
+        public virtual string Discription { get { return ""; } }
+
+        public virtual string Author { get { return "Facebook inc."; } }
+
+        public virtual bool hard { get; }
     }
 }

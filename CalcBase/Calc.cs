@@ -17,18 +17,36 @@ namespace ReactCalc
 
         public Calc()
         {
+
             Operations = new List<IOperation>();
-            Operations.Add(new SumOperation());
-            Operations.Add(new PowOperation());
-            Operations.Add(new ResOperation());
+
+
+            Console.WriteLine(Operations.GetType().ToString());
             Operations.Add(new MulOperation());
-            SetDllFile("\\DevineLibrery.dll");
-            SetDllFile("\\FactorialLibrery.dll");
+            Operations.Add(new ResOperation());
+            Operations.Add(new PowOperation());
+            Operations.Add(new SumOperation());
+            SetFolderOperations("Exts", "*dll");
         }
 
-        private bool SetDllFile(string dll)
+        private void SetFolderOperations(string folderName, string ch)
         {
-            var dllName = Directory.GetCurrentDirectory() + dll;
+            //директория с расширениями
+            var extsDirectory = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            
+
+            if (!Directory.Exists(extsDirectory))
+                return;
+            var exts = Directory.GetFiles(extsDirectory, ch);
+            foreach (var file in exts)
+            {
+                SetDllFile(file);
+                Console.WriteLine(file);
+            }
+        }
+
+        private bool SetDllFile(string dllName)
+        {
 
             if (!File.Exists(dllName))
             {
@@ -37,15 +55,16 @@ namespace ReactCalc
             }
 
             // загружаем сборку 
-            var assembly = Assembly.LoadFrom(dllName);
+           var assembly = Assembly.LoadFrom(dllName);
             // получаем всем типы/классы из нее
             var types = assembly.GetTypes();
             // перебираем типы
+            var ty = typeof(IOperation);
             foreach (var t in types)
             {
                 // находим тех, кто реализует интерфейc IOperation
                 var interfs = t.GetInterfaces();
-                if (interfs.Contains(typeof(IOperation)))
+                if (interfs.Contains(ty))
                 {
                     // создаем экземпляр найденного класса
                     var instance = Activator.CreateInstance(t) as IOperation;//делаем из t IOperation
@@ -63,7 +82,7 @@ namespace ReactCalc
         {
             // находим операцию по имени
             IOperation oper = Operations.FirstOrDefault(selector);
-            rusName = oper.rusName;
+            //rusName = oper.rusName;
 
             if (oper != null)
             {
@@ -92,31 +111,22 @@ namespace ReactCalc
         }
 
         /// <summary>
-        /// Сумма
+        /// Строку в инт
         /// </summary>
-        /// <param name="x">Слагаемое</param>
-        /// <param name="y">Слагаемое</param>
-        /// <returns>Целое число</returns>
-        [Obsolete("Используйте Execute('sum', new[]{x, y}). Данная функция будет удалена в версии 4.0")]
-        public double Sum(double x, double y)
+        /// <param name="arg"></param>
+        /// <param name="def">Если не удалось распарсить, то возвращаем это значение</param>
+        /// <returns></returns>
+        public static double ToNumber(string arg, double def = 100)
         {
-            return Execute("sum", new[] { x, y });
+            double x;
+            if (!double.TryParse(arg, out x))
+            {
+                x = def;
+            }
+
+            return x;
         }
 
-        public double Divide(double x, double y)
-        {
-            return x / y;
-        }
-
-        public double Sqrt(double x)
-        {
-            return Math.Sqrt(x);
-        }
-
-        public double Pow(double x, double y)
-        {
-            return Math.Pow(x, y);
-        }
 
     }
 }

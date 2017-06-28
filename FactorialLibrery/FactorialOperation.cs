@@ -24,6 +24,8 @@ namespace FactorialLibrery
             get { return "факториал"; }
         }
 
+        public override bool hard { get { return true; }}
+
         public override double Execute(double[] args)
         {
             var x = args[0];

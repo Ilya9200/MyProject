@@ -27,7 +27,7 @@ namespace DevineLibrery
 
         public override double Execute(double[] args)
         {
-            return args[1] / args[2];
+            return args[0] / args[1];
         }
     }
 }
