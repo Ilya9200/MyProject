@@ -50,6 +50,16 @@ namespace WinCalc
 
         private void btn_Click(object sender, EventArgs e)
         {
+            if (tbx.Text == "")
+            {
+                this.ActiveControl = tbx;
+                return;
+            }
+            if (tby.Text == "")
+            {
+                this.ActiveControl = tby;
+                return;
+            }
             doIt();
         }
         /// <summary>
