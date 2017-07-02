@@ -12,8 +12,6 @@ namespace ReactCalc.Models
 
         string Name { get; }
 
-        string rusName { get; }
-
         double Execute(double[] args);
     }
 }

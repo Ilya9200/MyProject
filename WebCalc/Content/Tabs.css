@@ -1,0 +1,31 @@
+﻿body {
+}
+
+.tab {
+    position: absolute;
+    visibility: hidden;
+    z-index: 10;
+    color: #000;
+    font: bold 9pt arial;
+}
+
+.tabs:target + .tab {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tabsLink a {
+    background-color: #F06406;
+    padding: 2px;
+    font: bold 10pt arial;
+    color: #fff;
+    text-decoration: none;
+    /* Начало закругленные табы */
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* Конец закругленные табы */
+}

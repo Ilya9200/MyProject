@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using ReactCalc.Models;
 
 namespace ReactCalc
 {
@@ -20,10 +19,10 @@ namespace ReactCalc
 
             if (args.Length >= 2)
             {
-                x = Calc.ToNumber(args[0], 70);
+                x = ToNumber(args[0], 70);
                 if (args.Length >= 3)
                 {
-                    y = Calc.ToNumber(args[1], 83);
+                    y = ToNumber(args[1], 83);
                 }
                 oper = args.Last();
             }
@@ -33,11 +32,11 @@ namespace ReactCalc
 
                 Console.WriteLine("Введите Х");
                 var strx = Console.ReadLine();
-                x = Calc.ToNumber(strx);
+                x = ToNumber(strx);
 
                 Console.WriteLine("Введите Y");
                 var stry = Console.ReadLine();
-                y = Calc.ToNumber(stry, 99);
+                y = ToNumber(stry, 99);
 
                 Console.WriteLine("Введите операцию");
                 oper = Console.ReadLine();
@@ -49,7 +48,10 @@ namespace ReactCalc
             {
                 var result = calc.Execute(oper, new[] { x, y });
 
-                Console.WriteLine(String.Format("{0} = {1}", calc.rusName, result));
+                Console.WriteLine(String.Format("{0} = {1}", calc.LastOperationName, result));
+                // * 
+                // sum = 5
+                // Сумма = 5
             }
             catch (NotSupportedException ex)
             {
@@ -60,6 +62,21 @@ namespace ReactCalc
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Строку в инт
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="def">Если не удалось распарсить, то возвращаем это значение</param>
+        /// <returns></returns>
+        private static double ToNumber(string arg, double def = 100)
+        {
+            double x;
+            if (!double.TryParse(arg, out x))
+            {
+                x = def;
+            }
 
+            return x;
+        }
     }
 }

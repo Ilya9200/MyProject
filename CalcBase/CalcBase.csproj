@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{529B93D1-0922-4F71-B85B-BC759939EA55}</ProjectGuid>
+    <ProjectGuid>{E4375EF6-1FA5-4086-B221-A95DC26B0EAC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CalcBase</RootNamespace>
@@ -43,12 +43,17 @@
     <Compile Include="Calc.cs" />
     <Compile Include="Models\IDisplayOperation.cs" />
     <Compile Include="Models\IOperation.cs" />
-    <Compile Include="Models\MulOperation.cs" />
     <Compile Include="Models\Operation.cs" />
-    <Compile Include="Models\PowOperation.cs" />
-    <Compile Include="Models\ResOperation.cs" />
+    <Compile Include="Models\DivideOperation.cs" />
     <Compile Include="Models\SumOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

@@ -1,0 +1,1 @@
+﻿SELECT UserFavoriteResult.Id, Users.FIO, OperationResult.InputData, Operation.FullName, OperationResult.Result FROM UserFavoriteResult INNER JOIN OperationResult ON UserFavoriteResult.Result = OperationResult.Id INNER JOIN Operation ON OperationResult.Operation = Operation.Id INNER JOIN Users ON Users.Id = OperationResult.Author; 

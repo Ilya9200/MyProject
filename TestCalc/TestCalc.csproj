@@ -54,10 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CalcBase\CalcBase.csproj">
-      <Project>{529b93d1-0922-4f71-b85b-bc759939ea55}</Project>
-      <Name>CalcBase</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ReactCalc\ReactCalc.csproj">
       <Project>{3d59d8f8-c667-43e2-9a21-8c0a3a7a2714}</Project>
       <Name>ReactCalc</Name>
