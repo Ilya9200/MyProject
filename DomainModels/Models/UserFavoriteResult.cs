@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModels.Models
 {
+    [Table("UserFavoriteResult")]
     public class UserFavoriteResult
     {
         public long Id { get; set; }
 
-        public User User { get; set; }
+        public long UserId { get; set; }
 
-        public OperationResult Result { get; set; }
+        public virtual User User { get; set; }
+
+        public long ResultId { get; set; }
+
+        public virtual OperationResult Result { get; set; }
     }
 }

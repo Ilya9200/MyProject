@@ -1,1 +1,0 @@
-﻿SELECT Operation.Name, Operation.FullName, OperationResult.InputData, OperationResult.Result, OperationResult.ExecutionTime, OperationResult.ExecutionDate FROM OperationResult inner join Operation on OperationResult.Id=Operation.Id;

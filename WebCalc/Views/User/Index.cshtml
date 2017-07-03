@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Пользователи</h1>
+</div>
+
+<div class="row">
+    @foreach (var user in ViewBag.Users as IEnumerable<DomainModels.Models.User>)
+    {
+        <div class="col-md-2">
+            <p>
+                @Html.ActionLink(user.FIO, "View", new { user.Id })
+            </p>
+            <p>@user.Login</p>
+            <p>@user.Id</p>
+        </div>
+
+    }
+</div>
+<div align="left">
+<p align="left">
+    @Html.ActionLink("Добавить", "Create", "User")
+</p>
+</div>

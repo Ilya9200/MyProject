@@ -1,1 +1,0 @@
-﻿SELECT Users.FIO, Operation.Name, Operation.FullName, OperationResult.InputData, OperationResult.Result, OperationResult.ExecutionTime, OperationResult.ExecutionDate FROM OperationResult inner join Operation on OperationResult.Operation=Operation.Id inner join Users on Users.Id=OperationResult.Author;
