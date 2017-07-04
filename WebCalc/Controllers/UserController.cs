@@ -46,7 +46,11 @@ namespace WebCalc.Controllers
         [HttpPost]
         public ActionResult Edit(User user)
         {
-            UserRepository.Update(user);
+            if (user.Login != null && user.Password != null)
+                UserRepository.Update(user);
+            else
+                return HttpNotFound();
+
             return RedirectToAction("Index");
         }
 
@@ -59,7 +63,10 @@ namespace WebCalc.Controllers
         [HttpPost]
         public ActionResult Create(User user)
         {
-            UserRepository.Create(user);
+            if (user.Login != null&&user.Password!=null)
+                UserRepository.Create(user);
+            else
+                return HttpNotFound();
         
             return RedirectToAction("Index");
         }
