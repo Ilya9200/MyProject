@@ -12,6 +12,10 @@ namespace ReactCalc
         {
             Console.WriteLine("Hello, i'm Калькулятор");
 
+            bool o = 2 > 12
+            ? true
+            : false;
+
             var x = 0d;
             var y = 0d;
             var calc = new Calc();

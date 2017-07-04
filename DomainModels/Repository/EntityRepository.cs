@@ -20,7 +20,7 @@ namespace DomainModels.Repository
 
         private const string ConnString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\ReactCalc\DomainModels\App_Data\reactcalc.mdf;Integrated Security=True";
 
-        public void Create(T user)
+        public T Create()
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace DomainModels.Repository
             throw new NotImplementedException();
         }
 
-        public T Get(long? id)
+        public T Get(long id)
         {
             using (var connection = new SqlConnection(ConnString))
             {

@@ -30,6 +30,16 @@ namespace DomainModels.Repository
         {
             return false;
         }
+
+        bool IUserRepository.Valid(string userName, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        User IUserRepository.GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

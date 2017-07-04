@@ -23,6 +23,8 @@ namespace DomainModels.Models
 
         public string FIO { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual ICollection<OperationResult> OperationResults { get; set; }
 
         public virtual ICollection<UserFavoriteResult> UserFavoriteResults { get; set; }
