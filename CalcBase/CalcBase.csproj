@@ -45,7 +45,6 @@
     <Compile Include="Models\IOperation.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\DivideOperation.cs" />
-    <Compile Include="Models\ResOperation.cs" />
     <Compile Include="Models\SumOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,7 +8,7 @@ namespace DomainModels.Migrations
         public override void Up()
         {
             AddColumn("dbo.Users", "IsDeleted", c => c.Boolean());
-
+            
         }
         
         public override void Down()

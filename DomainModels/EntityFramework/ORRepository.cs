@@ -43,7 +43,7 @@ namespace DomainModels.EntityFramework
 
         public void Update(OperationResult result)
         {
-            context.Entry(result).State = result.Id == 0 
+            context.Entry(result).State = result.Id == 0
                 ? System.Data.Entity.EntityState.Added
                 : System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
@@ -53,6 +53,14 @@ namespace DomainModels.EntityFramework
         {
             var rec = context.OperationResults.FirstOrDefault(u => u.OperationId == operationId && u.InputData == inputData);
             return rec != null ? rec.Result : double.NaN;
+        }
+
+        public IEnumerable<OperationResult> GetByUser(User user)
+        {
+            if (user == null)
+                return new OperationResult[0];
+
+            return context.OperationResults.Where(or => or.AuthorId == user.Id).ToList();
         }
     }
 }
