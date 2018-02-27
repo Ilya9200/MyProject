@@ -6,7 +6,7 @@ namespace DomainModels.EntityFramework
     public class CalcContext : DbContext
     {
 
-        public CalcContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Vaio\Desktop\Проекты\Копия\ReactCalc-MVCApp\DomainModels\App_Data\reactcalc.mdf;Integrated Security=True")
+        public CalcContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Vaio\Documents\Visual Studio 2017\Projects\MyProject\DomainModels\App_Data\reactcalc.mdf;Integrated Security=True")
         {
 
         }

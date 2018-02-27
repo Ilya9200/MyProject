@@ -16,7 +16,5 @@ namespace DomainModels.Models
         public string FullName { get; set; }
 
         public virtual ICollection<OperationResult> OperationResults { get; set; }
-
-        public long Code { get; set; }
     }
 }

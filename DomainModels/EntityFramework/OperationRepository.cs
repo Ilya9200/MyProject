@@ -1,14 +1,14 @@
-﻿using DomainModels.Repository;
+﻿using DomainModels.Models;
+using DomainModels.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DomainModels.Models;
 
 namespace DomainModels.EntityFramework
 {
-   public class OperationRepository : IOperationRepository
+    public class OperationRepository : IOperationRepository
     {
         private CalcContext context { get; set; }
 
@@ -19,36 +19,39 @@ namespace DomainModels.EntityFramework
 
         public Operation Create()
         {
-            throw new NotImplementedException();
+            return new Operation()
+            {
+                Uid = Guid.NewGuid()
+            };
         }
 
-        public void Delete(Operation oper)
+        public void Delete(Operation result)
         {
-            throw new NotImplementedException();
+            context.Entry(result).State = System.Data.Entity.EntityState.Deleted;
+            context.SaveChanges();
         }
 
         public Operation Get(long id)
         {
-            throw new NotImplementedException();
+            return context.Operations.FirstOrDefault(u => u.Id == id);
         }
 
         public IEnumerable<Operation> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Operations.ToList();
         }
 
-        public void Update(Operation oper)
+        public void Update(Operation result)
         {
-            context.Entry(oper).State = context.Operations.FirstOrDefault(o => o.Id == oper.Id)==null
+            context.Entry(result).State = result.Id == 0 
                 ? System.Data.Entity.EntityState.Added
                 : System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
-        //По коду возвращает операцию
-        public Operation CodeInId(long Code)
-        {
-            return context.Operations.FirstOrDefault(o => o.Code==Code);
-        }
 
+        public Operation GetByName(string name)
+        {
+            return context.Operations.FirstOrDefault(u => u.Name == name);
+        }
     }
 }
