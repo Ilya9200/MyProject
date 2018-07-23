@@ -57,6 +57,7 @@ namespace EleWise.ELMA.Model.Scripts
         		context.Worker = admin;
         		context.Uid = Guid.NewGuid();
 				context.Delete();
+				context.Delete();dasdasd
         	}
 
         }       
