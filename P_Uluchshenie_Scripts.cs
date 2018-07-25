@@ -58,6 +58,7 @@ namespace EleWise.ELMA.Model.Scripts
         		context.Uid = Guid.NewGuid();
 				context.Delete();
 				context.Delete();dasdasd
+				adsdasdasd
         	}
 
         }       
