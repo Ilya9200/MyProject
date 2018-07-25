@@ -59,7 +59,6 @@ namespace EleWise.ELMA.Model.Scripts
 				context.Delete();
 				context.Delete();dasdasd
 				adsdasdasd
-				asdasdasdasd
         	}
 
         }       
