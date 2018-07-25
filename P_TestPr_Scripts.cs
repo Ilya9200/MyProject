@@ -42,7 +42,16 @@ namespace EleWise.ELMA.Model.Scripts
 		/// <param name="context">Контекст процесса</param>
 		public virtual void TestPrCode (Context context)
 		{
-			asdasdsdasdasdasdasdasdasdasd
+			asdasdsd;
+		}
+
+		/// <summary>
+		/// TestCodeSecond
+		/// </summary>
+		/// <param name="context">Контекст процесса</param>
+		public virtual void TestCodeSecond (Context context)
+		{
+			
 		}
 	}
 }
