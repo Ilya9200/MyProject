@@ -51,14 +51,10 @@ namespace EleWise.ELMA.Model.Scripts
               		swimlaneExecutor = new WorkflowSwimlaneExecutor { SwimlaneUid = swimlane.Uid, WorkflowInstance = context.WorkflowInstance };
               		context.WorkflowInstance.SwimlaneExecutors.Add(swimlaneExecutor);
              	}
-             	swimlaneExecutor.User = asdasdasdadmin;
+             	swimlaneExecutor.User = admin;
 
         		// исполнитель по-умолчанию
         		context.Worker = admin;
-        		context.Uid = Guid.NewGuid();
-				context.Delete();
-				context.Delete();dasdasd
-				adsdasdasd
         	}
 
         }       
