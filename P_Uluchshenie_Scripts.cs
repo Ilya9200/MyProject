@@ -33,7 +33,7 @@ namespace EleWise.ELMA.Model.Scripts
         {
         	var matrixItem = ((IBPMNProcess) context.ImprovedProcessHeader.Published.CastAsRealType()).ResponsibilityMatrix.FirstOrDefault(x => x.ResponsibilityLevel == ResponsibilityLevel.Owner);        	
         	if (matrixItem != null && matrixItem.WorkerId.HasValue)
-        	{
+        	{фывфывфывфы
         		var settings = (EntityUserSettings)context.GetSettingsFor(c => c.ProcessOwner);
             	settings.Workers.Clear();
             	settings.Workers.Add(new Worker { WorkerId = matrixItem.WorkerId.Value, WorkerType = matrixItem.WorkerType });
