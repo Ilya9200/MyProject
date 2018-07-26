@@ -55,7 +55,7 @@ namespace EleWise.ELMA.Model.Scripts
 
         		// исполнитель по-умолчанию
         		context.Worker = admin;
-				Console.WriteLine("Complete");
+				12345
         	}
 
         }       
