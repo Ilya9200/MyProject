@@ -54,7 +54,11 @@ namespace EleWise.ELMA.Model.Scripts
              	swimlaneExecutor.User = admin;
 
         		// исполнитель по-умолчанию
-
+        		context.Worker = admin;
+				123455фывфыв
+				фывфывфы
+				фывфывфыв
+        	}
 
         }       
 
