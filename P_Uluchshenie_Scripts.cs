@@ -55,9 +55,6 @@ namespace EleWise.ELMA.Model.Scripts
 
         		// исполнитель по-умолчанию
         		context.Worker = admin;
-				123455фывфыв
-				фывфывфы
-				фывфывфыв123
         	}
 
         }       
