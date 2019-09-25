@@ -12,16 +12,12 @@ namespace ReactCalc.Models
 
         public abstract string Name { get; }
 
-        public abstract string rusName { get; }
-
         public abstract double Execute(double[] args);
 
         public virtual string DisplayName { get { return ""; } }
 
-        public virtual string Discription { get { return ""; } }
+        public virtual string Description { get { return ""; } }
 
         public virtual string Author { get { return "Facebook inc."; } }
-
-        public virtual bool hard { get; }
     }
 }

@@ -28,180 +28,149 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.res = new System.Windows.Forms.Label();
-            this.lboperations = new System.Windows.Forms.ListBox();
-            this.btn1 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.discplabel = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.lbOperations = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lby = new System.Windows.Forms.Label();
-            this.lbx = new System.Windows.Forms.Label();
-            this.calc = new System.Windows.Forms.Button();
-            this.tby = new System.Windows.Forms.TextBox();
-            this.tbx = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
+            this.tbY = new System.Windows.Forms.TextBox();
+            this.tbX = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // res
+            // btnClose
             // 
-            this.res.AutoSize = true;
-            this.res.Location = new System.Drawing.Point(6, 26);
-            this.res.Name = "res";
-            this.res.Size = new System.Drawing.Size(59, 13);
-            this.res.TabIndex = 0;
-            this.res.Text = "Результат";
-            this.res.Click += new System.EventHandler(this.res_Click);
-            // 
-            // lboperations
-            // 
-            this.lboperations.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lboperations.FormattingEnabled = true;
-            this.lboperations.Location = new System.Drawing.Point(3, 16);
-            this.lboperations.MultiColumn = true;
-            this.lboperations.Name = "lboperations";
-            this.lboperations.Size = new System.Drawing.Size(212, 106);
-            this.lboperations.TabIndex = 1;
-            this.lboperations.SelectedIndexChanged += new System.EventHandler(this.lboperations_SelectedIndexChanged);
-            // 
-            // btn1
-            // 
-            this.btn1.Location = new System.Drawing.Point(188, 480);
-            this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(60, 21);
-            this.btn1.TabIndex = 3;
-            this.btn1.Text = "Выйти";
-            this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.btn1_Click);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Location = new System.Drawing.Point(383, 169);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(106, 23);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Выйти";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.discplabel);
-            this.groupBox1.Controls.Add(this.lboperations);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Controls.Add(this.lblDescription);
+            this.groupBox1.Controls.Add(this.lbOperations);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(409, 125);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.Size = new System.Drawing.Size(501, 98);
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Шаг 1 Выбор операции";
+            this.groupBox1.Text = "Шаг 1 - Выбор операции";
             // 
-            // discplabel
+            // lblDescription
             // 
-            this.discplabel.AutoSize = true;
-            this.discplabel.Location = new System.Drawing.Point(230, 16);
-            this.discplabel.Name = "discplabel";
-            this.discplabel.Size = new System.Drawing.Size(57, 13);
-            this.discplabel.TabIndex = 1;
-            this.discplabel.Text = "Описание";
+            this.lblDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDescription.Enabled = false;
+            this.lblDescription.Location = new System.Drawing.Point(249, 16);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(249, 79);
+            this.lblDescription.TabIndex = 5;
+            this.lblDescription.Text = "Описание";
+            // 
+            // lbOperations
+            // 
+            this.lbOperations.ColumnWidth = 250;
+            this.lbOperations.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbOperations.FormattingEnabled = true;
+            this.lbOperations.Location = new System.Drawing.Point(3, 16);
+            this.lbOperations.Name = "lbOperations";
+            this.lbOperations.Size = new System.Drawing.Size(246, 79);
+            this.lbOperations.TabIndex = 4;
+            this.lbOperations.SelectedIndexChanged += new System.EventHandler(this.lbOperations_SelectedIndexChanged);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lby);
-            this.groupBox2.Controls.Add(this.lbx);
-            this.groupBox2.Controls.Add(this.calc);
-            this.groupBox2.Controls.Add(this.tby);
-            this.groupBox2.Controls.Add(this.tbx);
-            this.groupBox2.Location = new System.Drawing.Point(12, 174);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.lblResult);
+            this.groupBox2.Controls.Add(this.tbY);
+            this.groupBox2.Controls.Add(this.tbX);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(0, 98);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(409, 80);
-            this.groupBox2.TabIndex = 5;
+            this.groupBox2.Size = new System.Drawing.Size(501, 58);
+            this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Шаг 2 Ввод данных";
+            this.groupBox2.Text = "Шаг 2 - Ввод данных";
             // 
-            // lby
+            // label1
             // 
-            this.lby.AutoSize = true;
-            this.lby.Location = new System.Drawing.Point(6, 53);
-            this.lby.Name = "lby";
-            this.lby.Size = new System.Drawing.Size(88, 13);
-            this.lby.TabIndex = 4;
-            this.lby.Text = "Второй операнд";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(218, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "=";
             // 
-            // lbx
+            // lblResult
             // 
-            this.lbx.AutoSize = true;
-            this.lbx.Location = new System.Drawing.Point(6, 27);
-            this.lbx.Name = "lbx";
-            this.lbx.Size = new System.Drawing.Size(92, 13);
-            this.lbx.TabIndex = 3;
-            this.lbx.Text = "Первый операнд";
+            this.lblResult.AutoSize = true;
+            this.lblResult.Location = new System.Drawing.Point(237, 22);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(13, 13);
+            this.lblResult.TabIndex = 2;
+            this.lblResult.Text = "?";
             // 
-            // calc
+            // tbY
             // 
-            this.calc.Location = new System.Drawing.Point(233, 27);
-            this.calc.Name = "calc";
-            this.calc.Size = new System.Drawing.Size(120, 47);
-            this.calc.TabIndex = 2;
-            this.calc.Text = "Вычислить";
-            this.calc.UseVisualStyleBackColor = true;
-            this.calc.Click += new System.EventHandler(this.button1_Click);
-            this.calc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.calc_KeyPress);
+            this.tbY.Location = new System.Drawing.Point(112, 19);
+            this.tbY.Name = "tbY";
+            this.tbY.Size = new System.Drawing.Size(100, 20);
+            this.tbY.TabIndex = 1;
+            this.tbY.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbY_KeyUp);
             // 
-            // tby
+            // tbX
             // 
-            this.tby.Location = new System.Drawing.Point(104, 53);
-            this.tby.Name = "tby";
-            this.tby.Size = new System.Drawing.Size(100, 20);
-            this.tby.TabIndex = 1;
-            this.tby.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.tbX.Location = new System.Drawing.Point(6, 19);
+            this.tbX.Name = "tbX";
+            this.tbX.Size = new System.Drawing.Size(100, 20);
+            this.tbX.TabIndex = 0;
+            this.tbX.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbX_KeyUp);
             // 
-            // tbx
+            // timer1
             // 
-            this.tbx.Location = new System.Drawing.Point(104, 27);
-            this.tbx.Name = "tbx";
-            this.tbx.Size = new System.Drawing.Size(100, 20);
-            this.tbx.TabIndex = 0;
-            this.tbx.TextChanged += new System.EventHandler(this.tbx_TextChanged);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.res);
-            this.groupBox4.Location = new System.Drawing.Point(12, 272);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(409, 90);
-            this.groupBox4.TabIndex = 7;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Шаг 4 Результат";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 512);
-            this.Controls.Add(this.groupBox4);
+            this.ClientSize = new System.Drawing.Size(501, 200);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btn1);
-            this.MinimumSize = new System.Drawing.Size(515, 435);
+            this.Controls.Add(this.btnClose);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(515, 200);
             this.Name = "frmMain";
-            this.Text = "Калькулятор";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "React Calculator";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label res;
-        private System.Windows.Forms.ListBox lboperations;
-        private System.Windows.Forms.Button btn1;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox lbOperations;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label discplabel;
-        private System.Windows.Forms.TextBox tby;
-        private System.Windows.Forms.TextBox tbx;
-        private System.Windows.Forms.Label lby;
-        private System.Windows.Forms.Label lbx;
-        private System.Windows.Forms.Button calc;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox tbY;
+        private System.Windows.Forms.TextBox tbX;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblResult;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

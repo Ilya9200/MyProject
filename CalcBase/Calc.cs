@@ -12,62 +12,49 @@ namespace ReactCalc
     /// </summary>
     public class Calc
     {
-        public IList<IOperation> Operations { get; private set; }
-        public string rusName { get; set; }
+
+        public string LastOperationName { get; set; }
 
         public Calc()
         {
-
             Operations = new List<IOperation>();
 
+            var currentAssembly = Assembly.GetAssembly(typeof(IOperation));
+            GetOperations(currentAssembly);
 
-            Console.WriteLine(Operations.GetType().ToString());
-            Operations.Add(new MulOperation());
-            Operations.Add(new ResOperation());
-            Operations.Add(new PowOperation());
-            Operations.Add(new SumOperation());
-            SetFolderOperations("Exts", "*dll");
-        }
-
-        private void SetFolderOperations(string folderName, string ch)
-        {
-            //директория с расширениями
-            var extsDirectory = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-            
+            // директория с расширениями
+            var extsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Extensions");
 
             if (!Directory.Exists(extsDirectory))
                 return;
-            var exts = Directory.GetFiles(extsDirectory, ch);
-            foreach (var file in exts)
+
+            var exts = Directory.GetFiles(extsDirectory, "*.dll");
+
+            foreach (var dllName in exts)
             {
-                SetDllFile(file);
-                Console.WriteLine(file);
+                var assembly = Assembly.LoadFrom(dllName);
+                GetOperations(assembly);
             }
+
         }
 
-        private bool SetDllFile(string dllName)
+        private void GetOperations(Assembly assembly)
         {
-
-            if (!File.Exists(dllName))
-            {
-                Console.WriteLine("Файл " + dllName + " не подключен");
-                return false;
-            }
-
-            // загружаем сборку 
-           var assembly = Assembly.LoadFrom(dllName);
             // получаем всем типы/классы из нее
             var types = assembly.GetTypes();
             // перебираем типы
-            var ty = typeof(IOperation);
+            var searchInterface = typeof(IOperation);
             foreach (var t in types)
             {
+                if (t.IsAbstract || t.IsInterface)
+                    continue;
+
                 // находим тех, кто реализует интерфейc IOperation
                 var interfs = t.GetInterfaces();
-                if (interfs.Contains(ty))
+                if (interfs.Contains(searchInterface))
                 {
                     // создаем экземпляр найденного класса
-                    var instance = Activator.CreateInstance(t) as IOperation;//делаем из t IOperation
+                    var instance = Activator.CreateInstance(t) as IOperation;
                     if (instance != null)
                     {
                         // добавляем его в наш список операций
@@ -75,17 +62,24 @@ namespace ReactCalc
                     }
                 }
             }
-            return true;
         }
+
+        public IList<IOperation> Operations { get; private set; }
 
         private double Execute(Func<IOperation, bool> selector, double[] args)
         {
             // находим операцию по имени
-            IOperation oper = Operations.FirstOrDefault(selector);
-            //rusName = oper.rusName;
+            var oper = Operations.FirstOrDefault(selector);
 
             if (oper != null)
             {
+
+                var displayOper = oper as IDisplayOperation;
+
+                LastOperationName = displayOper != null
+                    ? displayOper.DisplayName
+                    : oper.Name;
+
                 // вычисляем результат 
                 var result = oper.Execute(args);
                 // отдаем пользователю
@@ -110,13 +104,7 @@ namespace ReactCalc
             return fun(args);
         }
 
-        /// <summary>
-        /// Строку в инт
-        /// </summary>
-        /// <param name="arg"></param>
-        /// <param name="def">Если не удалось распарсить, то возвращаем это значение</param>
-        /// <returns></returns>
-        public static double ToNumber(string arg, double def = 100)
+        public static double ToNumber(string arg, double def = 0)
         {
             double x;
             if (!double.TryParse(arg, out x))
@@ -127,6 +115,32 @@ namespace ReactCalc
             return x;
         }
 
+        /// <summary>
+        /// Сумма
+        /// </summary>
+        /// <param name="x">Слагаемое</param>
+        /// <param name="y">Слагаемое</param>
+        /// <returns>Целое число</returns>
+        [Obsolete("Используйте Execute('sum', new[]{x, y}). Данная функция будет удалена в версии 4.0")]
+        public double Sum(double x, double y)
+        {
+            return Execute("sum", new[] { x, y });
+        }
+
+        public double Divide(double x, double y)
+        {
+            return x / y;
+        }
+
+        public double Sqrt(double x)
+        {
+            return Math.Sqrt(x);
+        }
+
+        public double Pow(double x, double y)
+        {
+            return Math.Pow(x, y);
+        }
 
     }
 }

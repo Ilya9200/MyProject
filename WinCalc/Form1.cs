@@ -1,132 +1,149 @@
-﻿using System;
+﻿using ReactCalc;
+using ReactCalc.Models;
+//using ReactCalc.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ReactCalc;
-using ReactCalc.Models;
 
 namespace WinCalc
 {
     public partial class frmMain : Form
     {
+        private Calc Calc { get; set; }
+
+        private IOperation operation { get; set; }
+
+        private IOperation Operation {
+            get
+            {
+                return operation;
+            }
+            set
+            {
+                operation = value;
+                DispOperation = value as IDisplayOperation;
+            }
+        }
+
+        private IDisplayOperation DispOperation { get; set; }
+        
+        private DateTime? LastPressTime { get; set; }
+
         public frmMain()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            var calc = new Calc();
-            var operations = calc.Operations;
-
-            lboperations.DataSource = operations;
-            lboperations.DisplayMember = "Name";
-            lboperations.SelectedIndex = 0;
-
-            this.ActiveControl = tbx;
-        }
-
-        private void btn1_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void res_Click(object sender, EventArgs e)
+        private void frmMain_Load(object sender, EventArgs e)
         {
+            Calc = new Calc();
 
+            var operations = Calc.Operations;
+
+            lbOperations.DataSource = operations;
+            lbOperations.DisplayMember = "Name";
+
+            lbOperations.SelectedIndex = 0;
+
+            lblResult.Text = "";
+
+            timer1.Interval = 300;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void Calculate()
         {
-            var oper = lboperations.SelectedItem as IDisplayOperation;
-            if (!oper.hard)
-                doIt();
-        }
+            // определяем операцию
+            if (Operation == null)
+            {
+                lblResult.Text = "Выберите нормальную операцию";
+                return;
+            }
 
-        private void btn_Click(object sender, EventArgs e)
-        {
-            if (tbx.Text == "")
-            {
-                this.ActiveControl = tbx;
-                return;
-            }
-            if (tby.Text == "")
-            {
-                this.ActiveControl = tby;
-                return;
-            }
-            doIt();
-        }
-        /// <summary>
-        /// Функция, считывающая операцию с входными данными и выполняющая ее
-        /// </summary>
-        private void doIt()
-        {
-            //Определяем операцию
-            var oper = lboperations.SelectedItem as IDisplayOperation;
-            if (oper == null)
-            {
-                res.Text = "Введите существующую операцию";
-                return;
-            }
-            //Определяем входные данные
-            var x = ReactCalc.Calc.ToNumber(tbx.Text);
-            var y = ReactCalc.Calc.ToNumber(tby.Text);
-            //Вычисляем 
+            // определяем входные данные
+            var x = Calc.ToNumber(tbX.Text);
+            var y = Calc.ToNumber(tbY.Text);
+
             try
             {
-                var result = new ReactCalc.Calc();
-                var doubRes = result.Execute(oper.Execute, new[] { x, y });
-                res.Text = string.Format("\n{0} = {1}", oper.rusName, doubRes);
+                // вычисляем
+                var result = Calc.Execute(Operation.Execute, new[] { x, y });
+                
+                var operName = DispOperation != null
+                    ? DispOperation.DisplayName
+                    : Operation.Name;
+
+                // возвращаем результат
+                lblResult.Text = $"{result}";
             }
             catch (Exception ex)
             {
-                res.Text = string.Format("Опаньки: {0} ", ex.Message);
+                lblResult.Text = string.Format("Опаньки: {0}", ex.Message);
             }
         }
 
-        private void lboperations_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbOperations_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var displayOper = lboperations.SelectedItem as IDisplayOperation;
-            discplabel.Text = displayOper.Discription; 
-            if (displayOper != null)
+            lblDescription.Text = "";
+
+            Operation = lbOperations.SelectedItem as IOperation;
+
+            if (DispOperation != null)
             {
-                lboperations.Text = string.Format("Автор: {0} Описание: {1}", displayOper.Author, 
-                    !string.IsNullOrWhiteSpace(displayOper.Discription)? 
-                    displayOper.Discription:"Описания нет");
+                lblDescription.Text = string.Format("Автор: {0}{1}Описание: {2}",
+                    DispOperation.Author,
+                    Environment.NewLine,
+                    !string.IsNullOrWhiteSpace(DispOperation.Description) ? DispOperation.Description : "нет"
+                    );
             }
+            LastPressTime = DateTime.Now;
+            timer1.Start();
         }
 
-        private void tbx_TextChanged(object sender, EventArgs e)
+        private void tbX_KeyUp(object sender, KeyEventArgs e)
         {
-            var oper = lboperations.SelectedItem as IDisplayOperation;
-            if (!oper.hard)
-                doIt();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (tbx.Text == "")
+            
+            if (e.KeyCode == Keys.Enter)
             {
-                this.ActiveControl = tbx;
-                return;
+                tbY.Focus();
             }
-            if (tby.Text == "")
+            else
             {
-                this.ActiveControl = tby;
-                return;
+                LastPressTime = DateTime.Now;
+                timer1.Start();
             }
-            doIt();
         }
 
-        private void calc_KeyPress(object sender, KeyPressEventArgs e)
+        private void tbY_KeyUp(object sender, KeyEventArgs e)
         {
-            doIt();
+            LastPressTime = DateTime.Now;
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (LastPressTime.HasValue)
+            {
+                var diffTime = DateTime.Now - LastPressTime.Value;
+
+                if (diffTime.TotalMilliseconds >= 200)
+                {
+                    Calculate();
+                    LastPressTime = null;
+                    timer1.Stop();
+                }
+            }
         }
     }
 }

@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace ReactCalc.Models
 {
-    public interface IDisplayOperation:IOperation
+    public interface IDisplayOperation : IOperation
     {
         string DisplayName { get; }
 
-        string Discription { get; }
+        string Description { get; }
 
         string Author { get; }
-
-        bool hard { get; }
     }
-
 }

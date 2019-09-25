@@ -18,25 +18,23 @@ namespace ReactCalc.Models
             get { return "sum"; }
         }
 
-        public override string rusName
-        {
-            get { return "сумма"; }
-        }
-
-        public override string DisplayName
-        {
-            get { return "сумма1"; }
-        }
-
-        public override string Discription 
-        {
-            get { return "складывает два числа"; }
-        }
-
-
         public override double Execute(double[] args)
         {
             return args.Sum();
         }
+
+        public override string DisplayName
+        {
+            get { return "Сумма"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return "Немецкая денежная единица. В письменных источниках слово «пфенниг» появляется в IX—X столетиях. Сам термин рассматривается как изначальное германоязычное обозначение денария.";
+            }
+        }
+
     }
 }
